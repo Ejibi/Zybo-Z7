@@ -1,71 +1,11 @@
-FreeRTOS lwIP Echo Server
-----------------------------
+Each file in this represents an aspect of what the code is completing
 
-The FreeRTOS lwIP Echo server application starts an echo server at port 7. Any data sent to
-this port is simply echoed back.
+The stepper files represent the stepper motor code or the functions that tell how the motor should operate.
 
-By default, the program assigns the following settings to the board:
-IP Address: 192.168.1.10
-Netmask   : 255.255.255.0
-Gateway   : 192.168.1.1
-MAC address:  00:0a:35:00:01:02
-These settings can be changed in the file main.c.
+The server code represents how the webpage functions and how the user can operate the motor by initializing the motor's start-up parameters.
 
-The main echo server logic is present in the file echo.c.
+The network files work to port the applications server file operation to a standard webpage using the IP address of the board, its network mask, and its gateway.
 
-Running the Echo Server example
--------------------------------
+The GPIO files are to show extra applications to see if the mode used by the board is correctly seen in the hardware; the LED GPIOs will blink in unique patterns for each stepper motor mode to signify that the stepper is in wave drive, halfstep, full step, alongside the user being able to creat a emergency stop function using the button peripheral GPIOs.
 
-To connect and test the echo server, download and run the program on the board,
-and then issue the following command from your host machine:
-
-$ telnet 192.168.1.10 7
-Trying 192.168.1.10...
-Connected to 192.168.1.10.
-Escape character is '^]'.
-hello world
-hello world
-all messages will be echo'ed back
-all messages will be echo'ed back
-^]
-telnet> quit
-Connection closed.
-$
-
-
-FreeRTOS lwIPv6 Echo Server
-----------------------------
-
-The FreeRTOS lwIP Echo server application starts an echo server at port 7. Any data sent to
-this port is simply echoed back.
-
-By default, the program assigns the following settings to the board:
-IPv6 address: FE80:0:0:0:20A:35FF:FE00:102
-MAC address:  00:0a:35:00:01:02
-These settings can be changed in the file main.c.
-
-The main echo server logic is present in the file echo.c.
-
-Running the Echo Server example
--------------------------------
-
-To connect and test the echo server, download and run the program on the board,
-and then issue the following command from your host machine:
-
-$ telnet -6 FE80:0:0:0:20A:35FF:FE00:102%eth1 7
-Trying fe80::20a:35ff:fe00:102%eth1...
-Connected to FE80:0:0:0:20A:35FF:FE00:102%eth1.
-Escape character is '^]'.
-hello world
-hello world
-all messages will be echo'ed back
-all messages will be echo'ed back
-^]
-telnet> quit
-Connection closed.
-$
-References
-----------
-
-More details regarding the echo server can be obtained from Xilinx XAPP 1026:
-http://www.xilinx.com/support/documentation/application_notes/xapp1026.pdf
+And finally, Main.c has the task declarations, the specific commands executed to cause the motor to function and what to do in an emergency stop scenario.
